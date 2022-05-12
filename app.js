@@ -7,12 +7,28 @@ const promptUser = () => {
     return inquirer.prompt([{
         type: 'input',
         name: 'name',
-        message: 'What is your name?'
+        message: 'What is your name? (Required)',
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+            } else {
+                console.log('Please enter your name!');
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'github',
-        message:'Enter your Github Username'
+        message: 'Enter your Github Username (Required)',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Please enter your Github Username!');
+                return false;
+            }
+        }
     },
     {
             type: 'input',
@@ -36,12 +52,28 @@ const promptProject = portfolioData => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the name of your project?'
+            message: 'What is the name of your project? (Required)',
+            validate: projectName => {
+                if (projectName) {
+                    return true;
+                } else {
+                    console.log('Please enter your project name!');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'description',
-            message: 'Provide a description of the project (Required)'
+            message: 'Provide a description of the project (Required)',
+            validate: projectDes => {
+                if (projectDes) {
+                    return true;
+                } else {
+                    console.log('Please enter a description of your project!');
+                    return false;
+                }
+            }
         },
         {
             type: 'checkbox',
@@ -50,10 +82,17 @@ const promptProject = portfolioData => {
             choices: ['Javascript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
         },
         {
-            type: 'confirm',
-            name: 'feature',
-            message: 'Would you like to feature this project?',
-            default: false
+            type: 'input',
+            name: 'link',
+            message: 'Enter the Github link to your project. (Required)',
+            validate: githubLink => {
+                if (githubLink) {
+                    return true;
+                } else {
+                    console.log('Please enter your Github link!');
+                    return false;
+                }
+            }
         },
         {
             type: 'confirm',
