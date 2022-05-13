@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
-// const pageHTML = generatePage(name, github);
+const fs = require('fs');
+const generatePage = require('./src/page-template');
+//const pageHTML = generatePage(portfolioData);
 
 const promptUser = () => {
     return inquirer.prompt([{
@@ -129,13 +129,59 @@ const promptProject = portfolioData => {
         }
     });
 };
-promptUser()
-    .then(promptProject)
-    .then(portfolioData => {
-        console.log(portfolioData);
-    });
+const mockData = {
+    name: 'Ella',
+    github: 'ella9894',
+    confirmAbout: true,
+    about: 'I am a Software Developer!',
+    projects: [
+        {
+            name: 'Run-Buddy',
+            description: 'Fitness Trainer website!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis quidem vel iure officia qui ullam explicabo dolorem reprehenderit voluptate expedita nisi unde ab quod, aliquam, veritatis deleniti veniam. Quaerat?',
+            languages: ['HTML','CSS'],
+            link: 'https://ella9894.github.io/Run-Buddy/',
+            feature: true,
+            confirmAddProject: true
+        },
+        {
+            name: 'Taskinator',
+            description: 'Create Tasks and categorize them by  completion status!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis quidem vel iure officia qui ullam explicabo dolorem reprehenderit voluptate expedita nisi unde ab quod, aliquam, veritatis deleniti veniam. Quaerat?',
+            languages: ['HTML','CSS','Javascript'],
+            link: 'https://ella9894.github.io/Taskinator/',
+            feature: true,
+            confirmAddProject: true
+        },
+        {
+            name: 'Taskmaster Pro',
+            description: 'Create, drag and drop tasks based on stats! And be able to delete them!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis quidem vel iure officia qui ullam explicabo dolorem reprehenderit voluptate expedita nisi unde ab quod, aliquam, veritatis deleniti veniam. Quaerat?',
+            languages: ['HTML','CSS','Javascript','Bootsrap','jQuery'],
+            link: 'https://ella9894.github.io/Taskmaster-Pro/',
+            feature: false,
+            confirmAddProject: false
+        },
+        {
+            name: 'Accessibility Challenge',
+            description: 'Make website accessible!Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum perferendis quidem vel iure officia qui ullam explicabo dolorem reprehenderit voluptate expedita nisi unde ab quod, aliquam, veritatis deleniti veniam. Quaerat?',
+            languages: ['HTML','CSS'],
+            link: 'https://ella9894.github.io/Accessibility-Challenge/',
+            feature: false,
+            confirmAddProject: false
+        }
+    ]
+};
+// promptUser()
+//     .then(promptProject)
+//     .then(portfolioData => {
+//         const pageHTML = generatePage(portfolioData);
+//         fs.writeFile('./index.html',pageHTML, err => {
+//             if (err) throw new Error(err);
+//         });
+//     });
    
-
+const pageHTML = generatePage(mockData);
+fs.writeFile('./index.html', pageHTML, err => {
+    if (err) throw new Error(err);
+});
 
 
 
